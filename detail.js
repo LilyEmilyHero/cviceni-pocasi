@@ -92,67 +92,21 @@ const predpoved = {
   },
 };
 
-/*
-Pomocí Use this template si vytvořte kopii tohoto repozitáře. Najdete v něm soubor s daty pro počasí na jeden týden.
-V naší aplikaci budeme chtít vytvořit dvě stránky podle popisu dále. Zatím je nemusíme nijak horlivě stylovat, stačí nám zatím základní zobrazení dat.
-Hlavní stránka bude index.html s přehledem počasí na sedm dní v týdnou, pondělí až pátek. Každý den bude zobrazen jako karta s názvem dne, teplotou a stavem typu zataženo, déšť, sníh, atd. Pro tuto stránku si vytvořte samostatný soubor index.js a naplňte HTML obsahem podle dodaných dat.
-Po rozkliknutí karty na hlavní stránce se uživatel dostane na stránku detail.html s detailním přehledem počasí na daný den. Odkaz bude vypadat například detail.html#pondeli. Na stránce se zobrazí název dne, teploty ráno, odpoledne a večer, stav jako zataženo, déšť apod., vlhkost, tlak a slovní popis počasí.
-*/
+const currenctId = window.location.hash.slice(1);
+const currentWeatherData = predpoved[currenctId];
 
 const mainElement = document.querySelector('main');
 
 mainElement.innerHTML += `
-  <div class="article-card">
-    <h2>${predpoved.pondeli.den}</h2>
-    <p>Denní teplota: ${predpoved.pondeli.denni_teplota}</p>
-    <p>Stav: ${predpoved.pondeli.stav_pocasi}</p>
-    <a href="detail.html#pondeli">Detail</a>
-  <div>`;
-
-mainElement.innerHTML += `
-  <div class="article-card">
-    <h2>${predpoved.utery.den}</h2>
-    <p>Denní teplota: ${predpoved.utery.denni_teplota}</p>
-    <p>Stav: ${predpoved.utery.stav_pocasi}</p>
-    <a href="detail.html#utery">Detail</a>
-  <div>`;
-
-mainElement.innerHTML += `
-  <div class="article-card">
-    <h2>${predpoved.streda.den}</h2>
-    <p>Denní teplota: ${predpoved.streda.denni_teplota}</p>
-    <p>Stav: ${predpoved.streda.stav_pocasi}</p>
-    <a href="detail.html#streda">Detail</a>
-  <div>`;
-
-mainElement.innerHTML += `
-  <div class="article-card">
-    <h2>${predpoved.ctvrtek.den}</h2>
-    <p>Denní teplota: ${predpoved.ctvrtek.denni_teplota}</p>
-    <p>Stav: ${predpoved.ctvrtek.stav_pocasi}</p>
-    <a href="detail.html#ctvrtek">Detail</a>
-  <div>`;
-
-mainElement.innerHTML += `
-  <div class="article-card">
-    <h2>${predpoved.patek.den}</h2>
-    <p>Denní teplota: ${predpoved.patek.denni_teplota}</p>
-    <p>Stav: ${predpoved.patek.stav_pocasi}</p>
-    <a href="detail.html#patek">Detail</a>
-  <div>`;
-
-mainElement.innerHTML += `
-  <div class="article-card">
-    <h2>${predpoved.sobota.den}</h2>
-    <p>Denní teplota: ${predpoved.sobota.denni_teplota}</p>
-    <p>Stav: ${predpoved.sobota.stav_pocasi}</p>
-    <a href="detail.html#sobota">Detail</a>
-  <div>`;
-
-mainElement.innerHTML += `
-  <div class="article-card">
-    <h2>${predpoved.nedele.den}</h2>
-    <p>Denní teplota: ${predpoved.nedele.denni_teplota}</p>
-    <p>Stav: ${predpoved.nedele.stav_pocasi}</p>
-    <a href="detail.html#nedele">Detail</a>
-  <div>`;
+<article>
+  <h2>${currentWeatherData.den} ${currentWeatherData.datum}</h2>
+  <p><strong>Průměrná teplota:</strong> ${currentWeatherData.denni_teplota}°C</p>
+  <p><strong>Ranní teplota:</strong> ${currentWeatherData.ranni_teplota}°C</p>
+  <p><strong>Odpolední teplota:</strong> ${currentWeatherData.odpoledni_teplota}°C</p>
+  <p><strong>Večerní teplota:</strong> ${currentWeatherData.vecerni_teplota}°C</p>
+  <p><strong>Stav počasí:</strong> ${currentWeatherData.stav_pocasi}°C</p>
+  <p><strong>Tlak:</strong> ${currentWeatherData.tlak} hPa</p>
+  <p><strong>rychlost větru:</strong> ${currentWeatherData.rychlost_vetru} km/h</p>
+  <p><strong>Popis počasí:</strong> ${currentWeatherData.popis_pocasi}</p>
+  <a href="index.html">Zpět na stránky</a>
+</article>`;
